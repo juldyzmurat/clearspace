@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "530460563652",
+    "project_id": "clearspacey-cba3e",
+    "storage_bucket": "clearspacey-cba3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530460563652:android:1a226c9bce6cd6f3a51191",
+        "android_client_info": {
+          "package_name": "com.y"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530460563652-323orn0p9rkgkfev06u97rs29ljjeco7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7DE3GsKDoTaPnQtvyN6ZEDJUGEQ7PtWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530460563652-323orn0p9rkgkfev06u97rs29ljjeco7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
