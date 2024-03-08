@@ -9,11 +9,11 @@ const LoginWelcomePage = () => {
   return (
     <View style={styles.loginwelcomePage}>
       <View style={styles.groupParent}>
-        {/* <Image
+        <Image
           style={[styles.frameChild, styles.childPosition]}
           resizeMode="cover"
-          source={require("../assets/group-3.png")}
-        /> */}
+          source={require("./assets/group-3.png")}
+        />
         <View style={styles.rectangleParent}>
           <Pressable
             style={[styles.groupChild, styles.groupBorder]}

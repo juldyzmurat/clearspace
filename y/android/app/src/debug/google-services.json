@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "720202955581",
+    "project_id": "clearspace-bcb78",
+    "storage_bucket": "clearspace-bcb78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720202955581:android:8f1b71a7d08d00f55ea354",
+        "android_client_info": {
+          "package_name": "com.y"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720202955581-o5ctq8orm83et16ehg439njjgku63m5v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.y",
+            "certificate_hash": "1e4e94514f9124fb1ec73467f8f74979a61e6eae"
+          }
+        },
+        {
+          "client_id": "720202955581-t1qrt61cb4dd4d5o7unf5fursodt8v25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJPzUdM8FLozZMlC8SDRUuswqLkqY_mqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720202955581-t1qrt61cb4dd4d5o7unf5fursodt8v25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
