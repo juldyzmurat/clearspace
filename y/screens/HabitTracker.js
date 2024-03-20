@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     width: 321,
-    height: 90,
+    height: 120,
     position: "absolute",
   },
   habitTrackerItem: {

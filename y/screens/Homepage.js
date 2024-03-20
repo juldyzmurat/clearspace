@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Border, FontSize, Color, FontFamily, Padding} from '../GlobalStyles';
+import HabitTracker from './HabitTracker';
+import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 const Homepage = () => {
   const navigation = useNavigation();
@@ -18,60 +20,83 @@ const Homepage = () => {
       <Text style={[styles.clearSpace, styles.clearSpaceFlexBox]}>
         Clear Space
       </Text>
+      <View style={{height: 300, overflow: 'hidden'}}>
+        <ScrollView
+          horizontal={true} // Enable horizontal scrolling
+          showsHorizontalScrollIndicator={false} // Optional: Hide the horizontal scroll indicator
+          contentContainerStyle={styles.scrollViewContent} // Styles for the content container
+        >
+          {/* View 1 */}
+          <View style={[styles.groupChild, styles.groupChildPosition]}>
+            <Pressable onPress={() => navigation.navigate("Morning")}>
+              <Image
+                style={styles.morningAndNight1}
+                resizeMode="cover"
+                source={require('../assets/morning-and-night-1.png')}
+              />
+              <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Morning Log</Text>
+            </Pressable>
+          </View>
 
-      <ScrollView
-        horizontal={true} // Enable horizontal scrolling
-        showsHorizontalScrollIndicator={false} // Optional: Hide the horizontal scroll indicator
-        contentContainerStyle={styles.scrollViewContent} // Styles for the content container
-      >
-        {/* View 1 */}
-        <View style={[styles.groupChild, styles.groupChildPosition]}>
-          <Pressable onPress={() => navigation.navigate("Morning")}>
-            <Image
-              style={styles.morningAndNight1}
-              resizeMode="cover"
-              source={require('../assets/morning-and-night-1.png')}
-            />
-            <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Morning Log</Text>
-          </Pressable>
-        </View>
+          {/* View 2 */}
+          <View style={[styles.groupChild, styles.groupChildPosition]}>
+            <Pressable onPress={() => navigation.navigate("Morning")}>
+              <Image
+                style={styles.morningAndNight1}
+                resizeMode="cover"
+                source={require('../assets/morning-and-night-2.png')}
+              />
+              <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Evening Log</Text>
+            </Pressable>
+          </View>
 
-        {/* View 2 */}
-        <View style={[styles.groupChild, styles.groupChildPosition]}>
-          <Pressable onPress={() => navigation.navigate("Morning")}>
-            <Image
-              style={styles.morningAndNight1}
-              resizeMode="cover"
-              source={require('../assets/morning-and-night-2.png')}
-            />
-            <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Evening Log</Text>
-          </Pressable>
-        </View>
+          {/* View 3 */}
+          <View style={[styles.groupChild, styles.groupChildPosition]}>
+            <Pressable onPress={() => navigation.navigate("Weekly")}>
+              <Image
+                style={styles.morningAndNight1}
+                resizeMode="cover"
+                source={require('../assets/monthlyy-1.png')}
+              />
+              <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Weekly Recap</Text>
+            </Pressable>
+          </View>
 
-        {/* View 3 */}
-        <View style={[styles.groupChild, styles.groupChildPosition]}>
-          <Pressable onPress={() => navigation.navigate("Weekly")}>
-            <Image
-              style={styles.morningAndNight1}
-              resizeMode="cover"
-              source={require('../assets/monthlyy-1.png')}
-            />
-            <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Weekly Recap</Text>
-          </Pressable>
-        </View>
+          {/* View 4 */}
+          <View style={[styles.groupChild, styles.groupChildPosition]}>
+            <Pressable onPress={() => navigation.navigate("Monthly")}>
+              <Image
+                style={styles.morningAndNight1}
+                resizeMode="cover"
+                source={require('../assets/monthlyy-2.png')}
+              />
+              <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Monthly Recap</Text>
+            </Pressable>
+          </View>
+          
+        </ScrollView>
 
-        {/* View 4 */}
-        <View style={[styles.groupChild, styles.groupChildPosition]}>
-          <Pressable onPress={() => navigation.navigate("Monthly")}>
-            <Image
-              style={styles.morningAndNight1}
-              resizeMode="cover"
-              source={require('../assets/monthlyy-2.png')}
-            />
-            <Text style={[styles.monthlyRecap, styles.clearSpaceFlexBox]}>Monthly Recap</Text>
-          </Pressable>
+      </View>
+
+      <View style={styles.cardContainer}>
+        <View style={styles.textContainer}>
+          <Text style={styles.habitTitle}>Habit</Text>
+          <Text style={styles.trackerTitle}>tracker</Text>
         </View>
-      </ScrollView>
+        <Image
+            source={require('../assets/plant-1.png')} // Replace with your actual image path
+            style={styles.plantImage}
+            resizeMode="contain"
+        />
+      </View>
+
+      
+
+      
+      {/* <HabitTracker/> */}
+      
+
+
 
         {/* <View style={[styles.groupChild, styles.groupChildPosition]} >
           <Pressable
@@ -108,23 +133,27 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     height:350,
     alignItems: 'center', // Center items vertically in the container
-    paddingVertical: 10, // Add some padding around
+    paddingVertical: 10, // Add some padding around,
   },
 
   homepageScrollViewContent: {
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
+
   },
   homepageLayout: {
     maxWidth: '100%',
     overflow: 'hidden',
+
   },
   clearSpaceFlexBox: {
     alignItems: 'center',
     display: 'flex',
     textAlign: 'left',
     position: 'absolute',
+    
+
   },
   groupChildPosition: {
     borderRadius: Border.br_xl,
@@ -133,6 +162,7 @@ const styles = StyleSheet.create({
     left: 10,
     margin: 10,
     position: 'relative',
+    
   },
   groupLayout: {
     width: 232,
@@ -293,6 +323,7 @@ const styles = StyleSheet.create({
     height: 28,
     zIndex: 3,
     position: 'absolute',
+
   },
   homepage: {
     backgroundColor: Color.colorWhite,
@@ -301,6 +332,50 @@ const styles = StyleSheet.create({
     padding: Padding.p_3xs,
     width: '100%',
   },
+  cardContainer: {
+    backgroundColor: '#C6B7AB', // This is the color of the card background
+    borderRadius: 20, // Adjust as needed
+    padding: 20, // Adjust as needed
+    alignItems: 'center', // Centers content horizontally
+    justifyContent: 'center', // Centers content vertically
+    width: 250, // Set the width of the card
+    height: 400, // Set the height of the card
+    elevation: 5, // Adds elevation shadow for Android
+    shadowColor: '#000', // Shadow color for iOS
+    shadowOffset: { width: 0, height: 2 }, // Shadow offset for iOS
+    shadowOpacity: 0.25, // Shadow opacity for iOS
+    shadowRadius: 3.84, // Shadow radius for iOS
+    top: 100,
+    left:30,
+  },
+
+  habitTitle: {
+    color: '#404F5B',
+    fontSize: 48, // Bigger font size for "Habit"
+    fontFamily: 'Ubuntu-Regular',
+    fontWeight: 'bold',
+  },
+  trackerTitle: {
+    color: '#404F5B',
+    fontSize: 36, // Smaller font size for "tracker"
+    fontFamily: 'Ubuntu-Regular',
+    fontWeight: 'bold',
+  },
+
+  plantImage:{
+    height:350,
+    width:350,
+    left:115,
+    top:-30,
+  },
+
+  textContainer: {
+    alignItems: 'left',
+    marginBottom: 20,
+    top:50,
+    left:-40,
+  },
+  
 });
 
 export default Homepage;
