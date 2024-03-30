@@ -10,13 +10,13 @@ import {
 import { TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Border, FontSize, Color, FontFamily, Padding } from "../GlobalStyles";
-import QuestionsScroll from "./questionscroll";
+import QuestionView from "./questionscroll";
 
 const Morning = () => {
   const navigation = useNavigation();
 
   return (
-    <QuestionsScroll/>
+    <QuestionView/>
     
   );
 };
