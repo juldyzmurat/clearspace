@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {
+  Modal,
   ScrollView,
   Text,
   StyleSheet,
@@ -11,9 +13,14 @@ import {useNavigation} from '@react-navigation/native';
 import {Border, FontSize, Color, FontFamily, Padding} from '../GlobalStyles';
 import HabitTracker from './HabitTracker';
 import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
+import GridComponent from "./GridComponent";
+
 
 const Homepage = () => {
   const navigation = useNavigation();
+  const [showHabitTracker, setShowHabitTracker] = useState(false);
+  
+
 
   return (
     <>
@@ -28,7 +35,7 @@ const Homepage = () => {
         >
           {/* View 1 */}
           <View style={[styles.groupChild, styles.groupChildPosition]}>
-            <Pressable onPress={() => navigation.navigate("Morning")}>
+            <Pressable onPress={() => navigation.navigate("MorningIntro")}>
               <Image
                 style={styles.morningAndNight1}
                 resizeMode="cover"
@@ -78,62 +85,87 @@ const Homepage = () => {
 
       </View>
 
-      <View style={styles.cardContainer}>
-        <View style={styles.textContainer}>
-          <Text style={styles.habitTitle}>Habit</Text>
-          <Text style={styles.trackerTitle}>tracker</Text>
+    {/* this is the habit tracker hideview  */}
+  
+      <View>
+        <View style={styles.cardContainer}>
+          <Pressable onPress={() => setShowHabitTracker(true)}>
+            <View style={styles.textContainer}>
+              <Text style={styles.habitTitle}>Habit</Text>
+              <Text style={styles.trackerTitle}>tracker</Text>
+            </View>
+            <Image
+                source={require('../assets/plant-1.png')} // Replace with your actual image path
+                style={styles.plantImage}
+                resizeMode="contain"
+            />
+          </Pressable>
         </View>
-        <Image
-            source={require('../assets/plant-1.png')} // Replace with your actual image path
-            style={styles.plantImage}
-            resizeMode="contain"
-        />
+
+        <Modal
+          animationType="slide" // You can customize this as needed
+          transparent={true} // Set to true if you want to see the background
+          visible={showHabitTracker}
+        >
+          <Pressable 
+            style={styles.fullScreen} 
+            onPress={() => setShowHabitTracker(false)}
+            onPressIn={(event) => event.stopPropagation()}
+          >
+            <View style={styles.contentContainer} onStartShouldSetResponder={() => true}>
+              <HabitTracker />
+            </View>
+          </Pressable>
+          
+        </Modal>
+
       </View>
 
-      
-
-      
-      {/* <HabitTracker/> */}
+    
       
 
 
 
-        {/* <View style={[styles.groupChild, styles.groupChildPosition]} >
-          <Pressable
-            style={[styles.groupChild, styles.groupChildPosition]}
-            onPress={() => navigation.navigate("Morning")}
-          />
+        {/* // <View style={[styles.groupChild, styles.groupChildPosition]} >
+        //   <Pressable
+        //     style={[styles.groupChild, styles.groupChildPosition]}
+        //     onPress={() => navigation.navigate("Morning")}
+        //   />
 
-          <Image
-            style={styles.morningAndNight1}
-            resizeMode="cover"
-            source={require('../assets/morning-and-night-1.png')}
-          />
+        //   <Image
+        //     style={styles.morningAndNight1}
+        //     resizeMode="cover"
+        //     source={require('../assets/morning-and-night-1.png')}
+        //   />
 
-          <Text
-            style={[
-              styles.monthlyRecap,
-              styles.clearSpaceFlexBox,
-            ]}>{`Morning Log`}</Text>
-        </View> */}
-
-
-      
-
-      
-      
-
-      
+        //   <Text
+        //     style={[
+        //       styles.monthlyRecap,
+        //       styles.clearSpaceFlexBox,
+        //     ]}>{`Morning Log`}</Text>
+        // </View> 
+         */}
   
     </>
   );
-};
+};  
 
 const styles = StyleSheet.create({
+
+  fullScreen: {
+    flex: 1,
+    justifyContent: 'flex-start', 
+    alignItems: 'flex-start', 
+  },
+  contentContainer: {
+    backgroundColor: 'white', 
+    width: '50%',
+  },
+
   scrollViewContent: {
     height:350,
-    alignItems: 'center', // Center items vertically in the container
-    paddingVertical: 10, // Add some padding around,
+    alignItems: 'center', 
+    paddingVertical: 10, 
   },
 
   homepageScrollViewContent: {
@@ -281,20 +313,20 @@ const styles = StyleSheet.create({
   tracker: {
     fontSize: FontSize.size_11xl,
   },
-  habitTrackerTxtContainer: {
-    width: '100%',
-  },
-  habitTracker: {
-    top: 11,
-    left: 11,
-    width: 208,
-    height: 90,
-    color: Color.colorDarkslategray,
-    fontFamily: FontFamily.ubuntuRegular,
-    alignItems: 'center',
-    display: 'flex',
-    textAlign: 'left',
-  },
+  // habitTrackerTxtContainer: {
+  //   width: '100%',
+  // },
+  // habitTracker: {
+  //   top: 11,
+  //   left: 11,
+  //   width: 208,
+  //   height: 90,
+  //   color: Color.colorDarkslategray,
+  //   fontFamily: FontFamily.ubuntuRegular,
+  //   alignItems: 'center',
+  //   display: 'flex',
+  //   textAlign: 'left',
+  // },
   rectangleParent1: {
     top: 389,
     width: 344,
@@ -373,8 +405,9 @@ const styles = StyleSheet.create({
     alignItems: 'left',
     marginBottom: 20,
     top:50,
-    left:-40,
+    left:80,
   },
+
   
 });
 

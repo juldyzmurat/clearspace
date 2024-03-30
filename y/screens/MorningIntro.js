@@ -35,11 +35,28 @@ const MorningIntro = () => {
       <Text style={[styles.morningLog, styles.morningPosition]}>
         Morning Log
       </Text>
+      <Pressable onPress={() => navigation.navigate("Morning")} style={styles.morningSun}>
+        <Image
+          style = {styles.thesun}
+          resizeMode="cover"
+          source={require("../assets/morning-intro.png")}
+        />
+      </Pressable>
+      
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  thesun:{
+    top:300,
+  },
+
+  morningSun: {
+    zIndex:10,
+    position: 'absolute',
+  },
+
   iconLayout: {
     overflow: "hidden",
     width: "100%",
@@ -106,7 +123,7 @@ const styles = StyleSheet.create({
     top: 170,
     fontSize: FontSize.size_21xl,
     fontWeight: "700",
-    fontFamily: FontFamily.ubuntuBold,
+    fontFamily: "Ubuntu-Bold",
     textAlign: "center",
     justifyContent: "center",
     height: 83,
@@ -120,6 +137,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 800,
     padding:Padding.p_3xs,
+    alignContent:"center",
   },
 });
 

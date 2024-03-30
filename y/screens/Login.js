@@ -3,8 +3,12 @@ import { StyleSheet, View, Text, Pressable, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 
+
+
 const Login = () => {
   const navigation = useNavigation();
+
+  
 
   return (
     <View style={styles.login}>
@@ -37,6 +41,8 @@ Space`}</Text>
 };
 
 const styles = StyleSheet.create({
+
+
   loginShadowBox: {
     height: 72,
     width: 294,
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     display: "flex",
     textAlign: "left",
     color: Color.colorWhite,
-    fontFamily: FontFamily.loraRegular,
+    fontFamily: "Lora-SemiBoldItalic",
     fontSize: FontSize.size_xl,
     position: "absolute",
   },
