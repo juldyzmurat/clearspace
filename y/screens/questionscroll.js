@@ -15,19 +15,43 @@ const questions = [
 
 
 const QuestionsScroll = () => {
+    const navigation = useNavigation();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
+    const [isDone, setIsDone] = useState(false);
 
     // Determine swipe direction based on touch start/end points
-    const handleTouch = () => {
-      // Swipe to the right
-        if (touchStart - touchEnd > 75) {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % questions.length);
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleDoneClick = () => {
+        setIsDone(!isDone); // Toggle the isDone state
+        const timeoutId = setTimeout(() => {
+            navigation.navigate("Homepage");
+        }, 100); // 1000 milliseconds = 1 second delay
+
+        // Cleanup function to clear the timeout if the component unmounts
+        return () => clearTimeout(timeoutId);
+    };
+
+    const handleTouchStart = (e) => {
+        touchStartX = e.nativeEvent.pageX;
+    };
+
+    const handleTouchEnd = () => {
+        // Determine if swipe was to the left
+        if (touchStartX - touchEndX > 50) { // Adjust threshold as necessary
+            // Show next question
+            setCurrentIndex(prevIndex => {
+                // Only increment the index if it's less than the last question's index
+                if (prevIndex < questions.length - 1) {
+                    return prevIndex + 1;
+                } else {
+                    // If it's the last question, keep the index the same
+                    return prevIndex;
+                }
+            });
+            
         }
-      // Reset touch start and end points
-        setTouchStart(null);
-        setTouchEnd(null);
     };
 
     return (
@@ -35,10 +59,10 @@ const QuestionsScroll = () => {
         
         <View 
             style={styles.container}
-            onTouchStart={(e) => setTouchStart(e.nativeEvent.pageX)}
+            onTouchStart={handleTouchStart}
             onTouchEnd={(e) => {
-                setTouchEnd(e.nativeEvent.pageX);
-                handleTouch();
+                touchEndX = e.nativeEvent.pageX;
+                handleTouchEnd();
             }}
         >
             <Text style={[styles.whatAmI, styles.whatTypo]}>
@@ -49,6 +73,15 @@ const QuestionsScroll = () => {
                 mode="flat"
                 theme={{ colors: { background: "#d9d9d9" } }}
             />
+
+            {currentIndex === questions.length - 1 && (
+                <Pressable 
+                    style={[styles.doneButton, isDone && styles.doneButtonClicked]} 
+                    onPress={handleDoneClick}
+                >
+                    {isDone ? <Text style={styles.doneButtonText}>✓</Text> : null}
+                </Pressable>
+            )}
         </View>
     );
 };
@@ -71,13 +104,37 @@ const QuestionsScroll = () => {
             width: 350,
             height: 350,
             borderRadius: Border.br_41xl,
+            alignContent: 'center',
         },
         whatTypo: {
             // Styles for Text components
             fontSize: FontSize.size_11xl,
             color: Color.colorDarkslategray,
             fontFamily: FontFamily.ubuntuRegular,
-            width: 323, // Ensure Text has a defined width in a horizontal ScrollView
+            width: 323, // Ensure Text has a defined width in a horizontal ScrollView,
+            height: 150,
+            textAlignVertical:'bottom',
+        },
+
+        doneButton: {
+            width: 50,
+            height: 50,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderWidth: 2,
+            borderColor: Color.colorDarkslategray, // Change as needed
+            borderRadius: 25, // Circular button
+            bottom: 75,
+            position: 'absolute',
+        },
+
+        doneButtonClicked: {
+            backgroundColor: Color.colorSilver_200, // Change to your preferred color when clicked
+        },
+        doneButtonText: {
+            fontSize: 36,
+            fontFamily:"Lora-Regular",
+            color: Color.colorDarkslategray, // Text color, change as needed
         },
     });
     
