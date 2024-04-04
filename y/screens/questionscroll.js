@@ -18,6 +18,7 @@ const QuestionsScroll = () => {
     const navigation = useNavigation();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isDone, setIsDone] = useState(false);
+    const [enterPressed, setEnterPressed] = useState(false);
 
     // Determine swipe direction based on touch start/end points
     let touchStartX = 0;
@@ -50,12 +51,23 @@ const QuestionsScroll = () => {
                     return prevIndex;
                 }
             });
+            changePosition();
             
         }
     };
 
+    const [positionX, setPositionX] = useState(0);
+    const [positionY, setPositionY] = useState(150);
+    const changePosition = () => {
+        if (positionX < 200) {
+            setPositionX((prevPositionX) => prevPositionX + 50); 
+        }
+        if (positionY >= 45) {
+            setPositionY((prevPositionY) => prevPositionY - 35); 
+        }
+    };
+
     return (
-        
         
         <View 
             style={styles.container}
@@ -65,6 +77,12 @@ const QuestionsScroll = () => {
                 handleTouchEnd();
             }}
         >
+            <View style={styles.containerimage}>
+                <Image
+                    source={require('../assets/morning-intro.png')} // Replace with your image URL
+                    style={[styles.movingImage, { left: positionX, top: positionY }]}
+                />
+            </View>
             <Text style={[styles.whatAmI, styles.whatTypo]}>
                 {questions[currentIndex]}
             </Text>
@@ -72,14 +90,15 @@ const QuestionsScroll = () => {
                 style={styles.frameItem}
                 mode="flat"
                 theme={{ colors: { background: "#d9d9d9" } }}
+                onSubmitEditing={() => setEnterPressed(true)}
             />
 
-            {currentIndex === questions.length - 1 && (
+            {currentIndex === questions.length - 1 && enterPressed && (
                 <Pressable 
                     style={[styles.doneButton, isDone && styles.doneButtonClicked]} 
                     onPress={handleDoneClick}
                 >
-                    {isDone ? <Text style={styles.doneButtonText}>✓</Text> : null}
+                    <Text style={styles.doneButtonText}>✓</Text>
                 </Pressable>
             )}
         </View>
@@ -124,7 +143,7 @@ const QuestionsScroll = () => {
             borderWidth: 2,
             borderColor: Color.colorDarkslategray, // Change as needed
             borderRadius: 25, // Circular button
-            bottom: 75,
+            bottom: 10,
             position: 'absolute',
         },
 
@@ -135,6 +154,18 @@ const QuestionsScroll = () => {
             fontSize: 36,
             fontFamily:"Lora-Regular",
             color: Color.colorDarkslategray, // Text color, change as needed
+        },
+        containerimage: {
+            width: 350, // Set your desired dimensions for the container
+            height: 200,
+            position: 'relative',
+            backgroundColor: Color.colorSlategray,
+            overflow: 'hidden', // Allows the image to overflow the bounds of the container
+        },
+        movingImage: {
+            position: 'absolute', // Positioned absolutely within the parent container
+            width: 150, // Set your desired dimensions for the image
+            height: 150,
         },
     });
     
