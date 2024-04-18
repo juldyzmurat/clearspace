@@ -47,7 +47,7 @@ const Homepage = () => {
 
           {/* View 2 */}
           <View style={[styles.groupChild, styles.groupChildPosition]}>
-            <Pressable onPress={() => navigation.navigate("Morning")}>
+            <Pressable onPress={() => navigation.navigate("EveningIntro")}>
               <Image
                 style={styles.morningAndNight1}
                 resizeMode="cover"

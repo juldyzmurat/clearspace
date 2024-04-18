@@ -12,6 +12,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Homepage from "./screens/Homepage";
 import Login from "./screens/Login";
 import MorningIntro from "./screens/MorningIntro";
+import EveningIntro from "./screens/EveningIntro";
 import Morning from "./screens/Morning";
 import Evening from "./screens/Evening";
 import HabitTracker from "./screens/HabitTracker";
@@ -51,6 +52,11 @@ const App: React.FC = () => {
             <Stack.Screen
               name="Morning"
               component={Morning}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="EveningIntro"
+              component={EveningIntro}
               options={{ headerShown: false }}
             />
             <Stack.Screen

@@ -2,8 +2,9 @@ import * as React from "react";
 import { Text, StyleSheet, View, Pressable, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontSize, FontFamily, Border, Padding } from "../GlobalStyles";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
-const MorningIntro = () => {
+const EveningIntro = () => {
   const navigation = useNavigation();
 
   return (
@@ -12,8 +13,8 @@ const MorningIntro = () => {
         Clear Space
       </Text>
       <Pressable
-        style={[styles.morningIntroChild, styles.morningPosition]}
-        onPress={() => navigation.navigate("Morning")}
+        style={[styles.eveningIntroChild, styles.morningPosition]}
+        onPress={() => navigation.navigate("Evening")}
       />
       <View style={styles.groupParent}>
         <Image
@@ -32,14 +33,14 @@ const MorningIntro = () => {
           />
         </Pressable>
       </View>
-      <Text style={[styles.morningLog, styles.morningPosition]}>
-        Morning Log
+      <Text style={[styles.eveningLog, styles.morningPosition]}>
+        Evening Log
       </Text>
-      <Pressable onPress={() => navigation.navigate("Morning")} style={styles.morningSun}>
+      <Pressable onPress={() => navigation.navigate("Evening")} style={styles.morningSun}>
         <Image
-          style = {styles.thesun}
+          style = {styles.themoon}
           resizeMode="cover"
-          source={require("../assets/morning-intro.png")}
+          source={require("../assets/evening-intro.png")}
         />
       </Pressable>
       
@@ -48,8 +49,11 @@ const MorningIntro = () => {
 };
 
 const styles = StyleSheet.create({
-  thesun:{
+  themoon:{
+    width:300,
+    height:300,
     top:300,
+    left:30,
   },
 
   morningSun: {
@@ -82,11 +86,11 @@ const styles = StyleSheet.create({
     zIndex: 0,
     position: "absolute",
   },
-  morningIntroChild: {
+  eveningIntroChild: {
     top: 77,
     borderTopLeftRadius: Border.br_41xl,
     borderTopRightRadius: Border.br_41xl,
-    backgroundColor: Color.colorGainsboro,
+    backgroundColor: Color.colorDarkslategray,
     height: 723,
     zIndex: 1,
   },
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     position: "absolute",
   },
-  morningLog: {
+  eveningLog: {
     top: 170,
     fontSize: FontSize.size_21xl,
     fontWeight: "700",
@@ -130,7 +134,7 @@ const styles = StyleSheet.create({
     zIndex: 3,
     alignItems: "center",
     display: "flex",
-    color: Color.colorDarkslategray,
+    color: Color.colorSnow,
   },
   morningIntro: {
     backgroundColor: Color.colorWhite,
@@ -141,4 +145,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MorningIntro;
+export default EveningIntro;

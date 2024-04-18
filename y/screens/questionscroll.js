@@ -5,16 +5,28 @@ import {Border, FontSize, Color, FontFamily, Padding} from '../GlobalStyles';
 import { useNavigation } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get('window').width;
-const questions = [
-    "What am I grateful for today?",
-    "What is one thing I'm looking forward to today?",
-    "What is one personal strength I can utilize today?",
-    "How do I want to feel at the end of today?",
-    "What is one small step I can take today to improve my emotional well-being?"
-];
+let questions = []
 
+const QuestionView = ({ timeOfDay }) => {
 
-const QuestionsScroll = () => {
+    if (timeOfDay === "morning") {
+        questions = [
+            "What am I grateful for today?",
+            "What is one thing I'm looking forward to today?",
+            "What is one personal strength I can utilize today?",
+            "How do I want to feel at the end of today?",
+            "What is one small step I can take today to improve my emotional well-being?"
+        ];
+    } else if (timeOfDay === "evening") {
+        questions = [
+            "In what way did I move closer to my goals today?",
+            "How did I contribute to my own happiness today?",
+            "What could I have done differently today for a better outcome?",
+            "What am I looking forward to tomorrow?",
+            "How do I plan to rest and recharge tonight?"
+        ];
+    }
+
     const navigation = useNavigation();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isDone, setIsDone] = useState(false);
@@ -169,4 +181,4 @@ const QuestionsScroll = () => {
         },
     });
     
-export default QuestionsScroll;
+export default QuestionView;

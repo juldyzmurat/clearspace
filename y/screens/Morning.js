@@ -16,7 +16,7 @@ const Morning = () => {
   const navigation = useNavigation();
 
   return (
-    <QuestionView/>
+    <QuestionView timeOfDay="morning"/>
     
   );
 };
