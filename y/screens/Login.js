@@ -4,9 +4,19 @@ import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 
 
-
 const Login = () => {
   const navigation = useNavigation();
+
+  async function fetchDatabaseEntries() {
+    
+    const response = await fetch('http://10.0.2.2:5050/record/'); // Adjust the URL/port as needed
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  }
 
   
 
@@ -19,7 +29,8 @@ const Login = () => {
       <Text style={[styles.password, styles.emailTypo]}>Password</Text>
       <Pressable
         style={[styles.rectanglePressable, styles.loginShadowBox]}
-        onPress={() => navigation.navigate("Homepage")}
+        // onPress={() => navigation.navigate("Homepage")}
+        onPress={() => fetchDatabaseEntries()}
       />
       <Text
         style={[styles.loginYourFeelingsContainer, styles.clearSpaceFlexBox]}

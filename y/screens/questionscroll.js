@@ -10,6 +10,7 @@ let questions = []
 const QuestionView = ({ timeOfDay }) => {
 
     if (timeOfDay === "morning") {
+        console.log('morning');
         questions = [
             "What am I grateful for today?",
             "What is one thing I'm looking forward to today?",
@@ -26,6 +27,14 @@ const QuestionView = ({ timeOfDay }) => {
             "How do I plan to rest and recharge tonight?"
         ];
     }
+
+    const images = {
+        morning: require('../assets/morning-intro.png'),
+        evening: require('../assets/evening-intro.png'),
+    };
+
+    const imageSource = images[timeOfDay];
+    console.log(imageSource);
 
     const navigation = useNavigation();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -91,7 +100,7 @@ const QuestionView = ({ timeOfDay }) => {
         >
             <View style={styles.containerimage}>
                 <Image
-                    source={require('../assets/morning-intro.png')} // Replace with your image URL
+                    source={imageSource} // Replace with your image URL
                     style={[styles.movingImage, { left: positionX, top: positionY }]}
                 />
             </View>
@@ -101,8 +110,10 @@ const QuestionView = ({ timeOfDay }) => {
             <TextInput
                 style={styles.frameItem}
                 mode="flat"
+                // multiline={true}
                 theme={{ colors: { background: "#d9d9d9" } }}
                 onSubmitEditing={() => setEnterPressed(true)}
+                 // If you want to allow multiple lines
             />
 
             {currentIndex === questions.length - 1 && enterPressed && (
@@ -131,11 +142,13 @@ const QuestionView = ({ timeOfDay }) => {
         },
         frameItem: {
             // Styles for TextInput components
+            fontSize: FontSize.size_11xl,
             backgroundColor: Color.colorGainsboro,
             width: 350,
             height: 350,
             borderRadius: Border.br_41xl,
             alignContent: 'center',
+            overflow:'scroll'
         },
         whatTypo: {
             // Styles for Text components
@@ -145,6 +158,7 @@ const QuestionView = ({ timeOfDay }) => {
             width: 323, // Ensure Text has a defined width in a horizontal ScrollView,
             height: 150,
             textAlignVertical:'bottom',
+            overflow:'hidden'
         },
 
         doneButton: {

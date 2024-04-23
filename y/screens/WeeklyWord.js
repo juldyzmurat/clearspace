@@ -2,19 +2,24 @@ import * as React from "react";
 import { Text, StyleSheet, View, Pressable, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontSize, FontFamily, Border, Padding } from "../GlobalStyles";
+import WordCloud from 'react-d3-cloud';
 
-const MorningIntro = () => {
+const WeeklyWord = () => {
   const navigation = useNavigation();
+  const myText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquam tincidunt, elit nunc tincidunt tellus, ac lacinia nisl urna a nunc. Sed euismod, nunc id aliquam tincidunt, elit nunc tincidunt tellus, ac lacinia nisl urna a nunc.";
+
+  const data = myText.split(" ").map(word => ({ text: word, value: 1 }));
+  const fontSizeMapper = (word) => Math.log2(word.value) * 5;
+  const rotate = (word) => word.value % 360;
+
+
+
 
   return (
     <View style={[styles.morningIntro, styles.iconLayout]}>
       <Text style={[styles.clearSpace, styles.clearSpaceFlexBox]}>
         Clear Space
       </Text>
-      <Pressable
-        style={[styles.morningIntroChild, styles.morningPosition]}
-        onPress={() => navigation.navigate("Morning")}
-      />
       <View style={styles.groupParent}>
         <Image
           style={styles.groupChild}
@@ -33,15 +38,19 @@ const MorningIntro = () => {
         </Pressable>
       </View>
       <Text style={[styles.morningLog, styles.morningPosition]}>
-        Your Weekly Recap
+        Your weekly recap 
       </Text>
-      <Pressable onPress={() => navigation.navigate("Morning")} style={styles.morningSun}>
-        <Image
-          style = {styles.thesun}
-          resizeMode="cover"
-          source={require("../assets/sample_word_cloud.png")}
-        />
-      </Pressable>
+      <View>
+          <WordCloud
+            data={data}
+            fontSizeMapper={fontSizeMapper}
+            rotate={rotate}
+          />
+        </View>
+      
+      
+  
+
       
     </View>
   );
@@ -50,9 +59,6 @@ const MorningIntro = () => {
 const styles = StyleSheet.create({
   thesun:{
     top:300,
-    height:200,
-    width:350,
-    left: 30,
   },
 
   morningSun: {
@@ -144,4 +150,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MorningIntro;
+export default WeeklyWord;
