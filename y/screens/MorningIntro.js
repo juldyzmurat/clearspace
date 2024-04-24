@@ -13,8 +13,18 @@ const MorningIntro = () => {
       </Text>
       <Pressable
         style={[styles.morningIntroChild, styles.morningPosition]}
-        onPress={() => navigation.navigate("Morning")}
+        onPress={() => navigation.navigate("Homepage")}
       />
+      <Text style={[styles.morningLog, styles.morningPosition]}>
+        Good Morning
+      </Text>
+      <Pressable onPress={() => navigation.navigate("Morning")} style={styles.morningSun}>
+        <Image
+          style = {styles.thesun}
+          resizeMode="cover"
+          source={require("../assets/morning-intro.png")}
+        />
+      </Pressable>
       <View style={styles.groupParent}>
         <Image
           style={styles.groupChild}
@@ -32,16 +42,6 @@ const MorningIntro = () => {
           />
         </Pressable>
       </View>
-      <Text style={[styles.morningLog, styles.morningPosition]}>
-        Your Weekly Recap
-      </Text>
-      <Pressable onPress={() => navigation.navigate("Morning")} style={styles.morningSun}>
-        <Image
-          style = {styles.thesun}
-          resizeMode="cover"
-          source={require("../assets/sample_word_cloud.png")}
-        />
-      </Pressable>
       
     </View>
   );
@@ -50,13 +50,13 @@ const MorningIntro = () => {
 const styles = StyleSheet.create({
   thesun:{
     top:300,
-    height:200,
-    width:350,
+    height:300,
+    width:300,
     left: 30,
   },
 
   morningSun: {
-    zIndex:10,
+    zIndex:1,
     position: 'absolute',
   },
 

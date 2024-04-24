@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
 
   morningSun: {
-    zIndex:10,
+    zIndex:1,
     position: 'absolute',
   },
 

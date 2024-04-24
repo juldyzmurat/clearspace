@@ -40,6 +40,45 @@ const QuestionView = ({ timeOfDay }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isDone, setIsDone] = useState(false);
     const [enterPressed, setEnterPressed] = useState(false);
+    const [answers, setAnswers] = useState({});
+    const [inputValue, setInputValue] = useState("");
+    const userEmail = 'zxu4@case.edu'
+
+
+    const handleAnswer = (text) => {
+        setAnswers(prev => ({ ...prev, [`a${currentIndex + 1}`]: text }));
+    };
+
+    const sendDataToServer = async (data) => {
+        try {
+            const response = await fetch('http://10.0.2.2:5050/record/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const jsonResponse = await response.json();
+            console.log(jsonResponse); // Handle the response based on your API
+        } catch (error) {
+            console.error('Failed to send data:', error);
+        }
+    };
+
+    const submitResponses = () => {
+        const response = {
+            date: new Date().toISOString().split('T')[0], // Format: YYYY-MM-DD
+            moreve: timeOfDay,
+            email: userEmail,
+            ...answers
+        };
+        console.log(response); // For debugging, replace this with your API call
+        sendDataToServer(response);
+    };
+
 
     // Determine swipe direction based on touch start/end points
     let touchStartX = 0;
@@ -48,6 +87,7 @@ const QuestionView = ({ timeOfDay }) => {
     const handleDoneClick = () => {
         setIsDone(!isDone); // Toggle the isDone state
         const timeoutId = setTimeout(() => {
+            submitResponses();
             navigation.navigate("Homepage");
         }, 100); // 1000 milliseconds = 1 second delay
 
@@ -72,6 +112,7 @@ const QuestionView = ({ timeOfDay }) => {
                     return prevIndex;
                 }
             });
+            setInputValue("");
             changePosition();
             
         }
@@ -110,9 +151,15 @@ const QuestionView = ({ timeOfDay }) => {
             <TextInput
                 style={styles.frameItem}
                 mode="flat"
+                value={inputValue}
+                onChangeText={setInputValue}
                 // multiline={true}
                 theme={{ colors: { background: "#d9d9d9" } }}
-                onSubmitEditing={() => setEnterPressed(true)}
+                // onSubmitEditing={() => setEnterPressed(true)}
+                onSubmitEditing={(event) => {
+                    handleAnswer(event.nativeEvent.text);  // Pass the final text to handleAnswer
+                    setEnterPressed(true);
+                }}
                  // If you want to allow multiple lines
             />
 

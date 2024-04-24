@@ -9,7 +9,8 @@ const Login = () => {
 
   async function fetchDatabaseEntries() {
     
-    const response = await fetch('http://10.0.2.2:5050/record/'); // Adjust the URL/port as needed
+    // const response = await fetch('http://10.0.2.2:5050/record/'); // Adjust the URL/port as needed
+    const response = await fetch('http://10.0.2.2:5050/record/');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -29,8 +30,8 @@ const Login = () => {
       <Text style={[styles.password, styles.emailTypo]}>Password</Text>
       <Pressable
         style={[styles.rectanglePressable, styles.loginShadowBox]}
-        // onPress={() => navigation.navigate("Homepage")}
-        onPress={() => fetchDatabaseEntries()}
+        onPress={() => navigation.navigate("Homepage")}
+        // onPress={() => fetchDatabaseEntries()}
       />
       <Text
         style={[styles.loginYourFeelingsContainer, styles.clearSpaceFlexBox]}
