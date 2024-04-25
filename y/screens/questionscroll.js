@@ -61,12 +61,17 @@ const QuestionView = ({ timeOfDay }) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            const jsonResponse = await response.json();
-            console.log(jsonResponse); // Handle the response based on your API
+            try {
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); // Handle the response based on your API
+            } catch (parseError) {
+                console.error('Failed to parse JSON:', parseError);
+            }
         } catch (error) {
             console.error('Failed to send data:', error);
         }
     };
+    
 
     const submitResponses = () => {
         const response = {

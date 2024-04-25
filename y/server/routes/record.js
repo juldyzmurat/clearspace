@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
     const db = getDB();  // Get the db connection
-    const collection = db.collection("db-s24");  // Ensure this matches your collection name
+    const collection = db.collection("responses");  // Ensure this matches your collection name
     try {
         let results = await collection.find({}).toArray();
         res.status(200).send(results);

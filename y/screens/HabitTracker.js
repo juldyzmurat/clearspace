@@ -2,6 +2,8 @@ import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
 import GridComponent from "./GridComponent";
+import CalendarComponent from "./calendarcomponent";
+import { CanceledError } from "axios";
 
 const HabitTracker = () => {
   return (
@@ -14,9 +16,10 @@ const HabitTracker = () => {
         </View>
       </Text>
       <View/>
-      <View style={styles.gridContainerStyle}>
+      {/* <View style={styles.gridContainerStyle}>
         <GridComponent totalSquares={31} />
-      </View>
+      </View> */}
+      <CalendarComponent />
     </View>
     
   );
