@@ -59,7 +59,7 @@ const Homepage = () => {
 
           {/* View 3 */}
           <View style={[styles.groupChild, styles.groupChildPosition]}>
-            <Pressable onPress={() => navigation.navigate("Weekly")}>
+            <Pressable onPress={() => navigation.navigate("WeeklyRecapScreen")}>
               <Image
                 style={styles.morningAndNight1}
                 resizeMode="cover"
@@ -180,12 +180,9 @@ const styles = StyleSheet.create({
 
   },
   clearSpaceFlexBox: {
-    alignItems: 'center',
-    display: 'flex',
-    textAlign: 'left',
-    position: 'absolute',
-    
-
+    alignItems: "center",
+    display: "flex",
+    color: Color.colorDarkslategray,
   },
   groupChildPosition: {
     borderRadius: Border.br_xl,

@@ -16,7 +16,7 @@ import EveningIntro from "./screens/EveningIntro";
 import Morning from "./screens/Morning";
 import Evening from "./screens/Evening";
 import HabitTracker from "./screens/HabitTracker";
-import WeeklyWord from "./screens/WeeklyWord";
+import WeeklyRecapScreen from "./screens/WeeklyWord";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
@@ -71,8 +71,8 @@ const App: React.FC = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Weekly"
-              component={WeeklyWord}
+              name="WeeklyRecapScreen"
+              component={WeeklyRecapScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
