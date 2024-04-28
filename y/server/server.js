@@ -79,27 +79,36 @@ connectDB().then(() => {
     });
     
 
-    app.post('/habittracker', (req, res) => {
-        console.log('Received habit tracker data:', req.body);
-        const { month, year, email, filledDays } = req.body; // Adjust these fields based on your client-side data structure
+    app.post('/habittracker', async (req, res) => {
+        try {
+            const database = db
+            const collection = database.collection('habittracker');
     
-        // Create a new document for the habit tracker
-        const habitTrackerDoc = {
-            month,
-            year,
-            email,
-            filledDays,
-            createdAt: new Date() // Store the current date and time as the creation date
-        };
+            const { email, month, year, filledDays } = req.body;
+            const filter = {
+                email,
+                month: month.toString(), // Ensure month is a string if your database stores it as a string
+                year: year.toString() // Ensure year is a string if your database stores it as a string
+            };
+            const update = {
+                $set: { filledDays }
+            };
+            const options = { upsert: true }; // This ensures that a new document is created if one doesn't exist.
     
-        // Insert the document into the "habittracker" collection
-        db.collection('habittracker').insertOne(habitTrackerDoc).then(() => {
-            console.log('Habit tracker data saved successfully');
-            res.status(200).json({ message: "Habit tracker data saved successfully" });
-        }).catch((error) => {
-            console.error('Error saving habit tracker data:', error);
-            res.status(500).json({ error: "Error saving habit tracker data", details: error.message });
-        });
+            const result = await collection.updateOne(filter, update, options);
+            if (result.upsertedCount > 0) {
+                console.log('Created a new document');
+            } else if (result.modifiedCount > 0) {
+                console.log('Updated an existing document');
+            } else {
+                console.log('No changes made to the document');
+            }
+    
+            res.status(200).send({ message: "Data updated successfully" });
+        } catch (error) {
+            console.error('Database or server error:', error);
+            res.status(500).send({ message: "Failed to update data" });
+        }
     });
 
 }).catch(err => {
