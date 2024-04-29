@@ -7,10 +7,10 @@ import {useNavigation} from '@react-navigation/native';
 
 const WeeklyRecapScreen = () => {
   // Dummy data for demo
-  const morningJournalCompletion = 3; // e.g., 3 out of 7 days completed
-  const eveningJournalCompletion = 4; // e.g., 4 out of 7 days completed
-  const habitsCompletion = 5; // e.g., 5 out of 7 days completed
-  const quoteOfTheWeek = "Be yourself; everyone else is already taken. - Oscar Wilde";
+  const morningJournalCompletion = 2; // e.g., 3 out of 7 days completed
+  const eveningJournalCompletion = 2; // e.g., 4 out of 7 days completed
+  const habitsCompletion = 2; // e.g., 5 out of 7 days completed
+  const quoteOfTheWeek = "I am the master of my fate, I am the captain of my soul. - William Ernest Henley";
   const navigation = useNavigation();
 
 
@@ -30,9 +30,6 @@ const WeeklyRecapScreen = () => {
     </View>
   );
 
-
-
-    
 
     return (
       <View style={[styles.morningIntro, styles.iconLayout]}>
@@ -185,7 +182,6 @@ const WeeklyRecapScreen = () => {
       fontWeight: 'bold',
       marginBottom: 10,
       width: '300%', // Use full width available in the container
-      align:'center',
     },
     quote: {
       fontSize: 16,

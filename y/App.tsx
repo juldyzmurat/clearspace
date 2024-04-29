@@ -17,6 +17,7 @@ import Morning from "./screens/Morning";
 import Evening from "./screens/Evening";
 import HabitTracker from "./screens/HabitTracker";
 import WeeklyRecapScreen from "./screens/WeeklyWord";
+import MonthlyRecap from "./screens/MonthlyRecap";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
@@ -73,6 +74,11 @@ const App: React.FC = () => {
             <Stack.Screen
               name="WeeklyRecapScreen"
               component={WeeklyRecapScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Monthly"
+              component={MonthlyRecap}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

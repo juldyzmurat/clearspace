@@ -180,9 +180,10 @@ const styles = StyleSheet.create({
 
   },
   clearSpaceFlexBox: {
-    alignItems: "center",
-    display: "flex",
-    color: Color.colorDarkslategray,
+    alignItems: 'center',
+    display: 'flex',
+    textAlign: 'left',
+    position: 'absolute',
   },
   groupChildPosition: {
     borderRadius: Border.br_xl,
