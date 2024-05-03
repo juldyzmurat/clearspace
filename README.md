@@ -22,11 +22,11 @@ I used MERN framework for this project.
 - Node.js: JavaScript runtime environment for executing server-side JavaScript code
   
 ## Usage 
-![Habit Tracker]([https://github.com/juldyzmurat/clearspace/raw/main/usecase_media/morning-log.png](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/habit-tracker.png))
+![Habit Tracker](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/habit-tracker.png)
 ![Morning Log](https://github.com/juldyzmurat/clearspace/raw/main/usecase_media/morning-log.png)
-![Evening Log]([https://github.com/juldyzmurat/clearspace/raw/main/usecase_media/morning-log.png](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/evening-log.png))
-![Weekly Recap]([https://github.com/juldyzmurat/clearspace/raw/main/usecase_media/morning-log.png](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/weekly-recap.png))
-![Monthly Recap]([https://github.com/juldyzmurat/clearspace/raw/main/usecase_media/morning-log.png](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/monthly-recap.png))
+![Evening Log](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/evening-log.png)
+![Weekly Recap](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/weekly-recap.png)
+![Monthly Recap](https://github.com/juldyzmurat/clearspace/blob/main/usecase_media/monthly-recap.png)
 
 
 ## Features
