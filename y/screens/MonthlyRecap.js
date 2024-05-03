@@ -110,6 +110,7 @@ const MonthlyRecap = () => {
                 setTopHex(tophex);
                 fetchImages(topHex).then(urls => {
                     const urls1 = urls.slice(3);
+                    console.log(urls1);
                     setlinktoImages(urls1);
                 });
                 const transformedData = sortedEmotions.map(emotion => ({
@@ -140,6 +141,7 @@ const MonthlyRecap = () => {
     const fetchImages = async () => {
         for (const color of colors) {
             try {
+                console.log(topHex);
                 const response = await client.photos.search({ query, color, page: 1, per_page: 20 });
                 let addedCount = 0; // Count how many images have been added for this color
     
@@ -158,6 +160,7 @@ const MonthlyRecap = () => {
                 console.error(`Error fetching photos for color: ${color}`, error);
             }
         }
+        console.log(imageUrls);
         return imageUrls;
     };
 

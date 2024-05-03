@@ -1,11 +1,14 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Pressable, Image } from "react-native";
+import { useState } from "react";
+import { StyleSheet, View, Text, Pressable, Image, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize, Padding } from "../GlobalStyles";
 
 
 const Login = () => {
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   async function fetchDatabaseEntries() {
     
@@ -24,10 +27,32 @@ const Login = () => {
   return (
     <View style={styles.login}>
       <View style={styles.loginChild} />
-      <View style={[styles.loginItem, styles.loginShadowBox]} />
+      {/* <View style={[styles.loginItem, styles.loginShadowBox]} />
       <Text style={[styles.email, styles.emailTypo]}>Email</Text>
       <View style={[styles.loginInner, styles.loginShadowBox]} />
-      <Text style={[styles.password, styles.emailTypo]}>Password</Text>
+      <Text style={[styles.password, styles.emailTypo]}>Password</Text> */}
+      <View style={[styles.loginItem, styles.loginShadowBox]}>
+        <Text style={[styles.email, styles.emailTypo]}>Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+      </View>
+      <View style={[styles.loginInner, styles.loginShadowBox]}>
+        <Text style={[styles.password, styles.emailTypo]}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+          autoCapitalize="none"
+        />
+      </View>
       <Pressable
         style={[styles.rectanglePressable, styles.loginShadowBox]}
         onPress={() => navigation.navigate("Homepage")}
@@ -53,6 +78,19 @@ Space`}</Text>
 };
 
 const styles = StyleSheet.create({
+
+  input: {
+    // backgroundColor: Color.colorWhite,
+    height: 48,
+    width: '100%', // Adjust width to fit inside the parent view
+    paddingHorizontal: 10,
+    borderColor: 'transparent',
+    borderWidth: 1,
+    borderRadius: 4,
+    fontSize: 16,
+    marginTop: 5, // Add some spacing between label and input
+    left: 10,
+  },
 
 
   loginShadowBox: {
@@ -82,7 +120,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   clearSpaceFlexBox: {
-    height: 83,
+    height: 100,
     alignItems: "center",
     display: "flex",
     textAlign: "left",
@@ -117,7 +155,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: Border.br_181xl,
   },
   email: {
-    top: 434,
+    top: 460,
     zIndex: 2,
     left: 91,
     height: 87,
@@ -137,7 +175,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: Border.br_181xl,
   },
   password: {
-    top: 534,
+    top: 555,
     left: 90,
     zIndex: 4,
   },
@@ -184,7 +222,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   clearSpace: {
-    top: 240,
+    top: 200,
     left: 19,
     fontSize: FontSize.size_21xl,
     fontFamily: FontFamily.ubuntuRegular,
